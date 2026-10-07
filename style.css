@@ -48,3 +48,196 @@ ul {
     height: 300px;
     width: 100%;
 }
+
+
+
+a {
+    color: cornflowerblue;
+    text-decoration: none;
+}
+
+a:hover,
+a:focus {
+    color: cornflowerblue;
+    text-decoration: underline;
+}
+
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: grey;
+    color: white;
+    position: sticky;
+}
+
+.logo {
+    font-size: 20px;
+}
+
+.nav a {
+    color: white;
+    margin-left: 15px;
+}
+
+.nav a:hover,
+.nav a:focus {
+    color: gray;
+    text-decoration: underline;
+}
+
+.hero {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #e0e7ff;
+    border-radius: 8px;
+    margin-bottom: 25px;
+}
+
+.hero h1 {
+    font-size: 30px;
+}
+
+.highlight {
+    color: #1e3a8a;
+}
+
+
+.card h3 {
+    padding: 15px 15px 5px;
+}
+
+.card p {
+    padding: 0 15px 15px;
+}
+
+.card .btn {
+    display: inline-block;
+    margin: 0 15px 15px;
+    color: white;
+    padding: 8px 16px;
+    font-size: 14px;
+}
+
+.card .btn:hover,
+.card .btn:focus {
+    color: white;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.table th {
+    background-color: #1e3a8a;
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+.table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #f0f4ff;
+}
+
+.contact-form {
+    background-color: lightblue;
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid black;
+    max-width: 600px;
+    margin-top: 15px;
+}
+
+.contact-form label {
+    display: block;
+    margin-top: 12px;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+
+.contact-form button {
+    margin-top: 15px;
+    background-color: lightskyblue;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: inherit;
+}
+
+.contact-form button:hover,
+.contact-form button:focus {
+    background-color: gray;
+    outline: none;
+}
+
+.footer {
+    background-color: #111;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    font-size: 14px;
+}
+
+.footer a {
+    color: white;
+    margin: 0 5px;
+}
+
+
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero h1 {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .nav a {
+        display: block;
+        margin: 5px 0;
+    }
+
+    main {
+        margin: 15px;
+        padding: 15px;
+    }
+}
