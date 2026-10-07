@@ -1,14 +1,14 @@
-/* 1. CSS Айнымалылары (Переменные) */
+
 :root {
-  --main-color: #1e293b;       /* Шапка мен футердің күңгірт түсі */
-  --accent-color: #4f46e5;     /* Батырмалар мен сілтемелердің көк түсі */
-  --bg-color: #f8fafc;         /* Артқы фон түсі */
-  --card-bg: #ffffff;         /* Контейнер мен карточка фоны */
-  --text-color: #334155;        /* Мәтін түсі */
-  --border-color: #e2e8f0;      /* Сызықтар түсі */
+  --main-color: #1e293b;     
+  --accent-color: #4f46e5;   
+  --bg-color: #f8fafc;       
+  --card-bg: #ffffff;         
+  --text-color: #334155;       
+  --border-color: #e2e8f0;    
 }
 
-/* 2. Негізгі настройкалар */
+
 body {
   font-family: 'Segoe UI', Arial, sans-serif;
   background-color: var(--bg-color);
@@ -20,7 +20,6 @@ body {
   min-height: 100vh;
 }
 
-/* 3. Шапка және Навигация (Flexbox) */
 .header {
   display: flex;
   justify-content: space-between;
@@ -48,14 +47,13 @@ body {
   border-radius: 4px;
 }
 
-/* Hover & Focus эффектілері */
+
 .nav a:hover,
 .nav a:focus {
   color: #ffffff;
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* 4. Негізгі контент блогы (Main) */
 main {
   flex: 1;
   max-width: 800px;
@@ -96,7 +94,6 @@ main a:hover {
   text-decoration: underline;
 }
 
-/* 5. Карточкалар блогы (Home page - CSS Grid) */
 .cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -119,7 +116,6 @@ main a:hover {
   border-radius: 6px;
 }
 
-/* 6. Кесте стилі (Sports page - Table) */
 .table {
   width: 100%;
   border-collapse: collapse;
@@ -142,7 +138,7 @@ main a:hover {
   background-color: #f1f5f9;
 }
 
-/* 7. Форма стилі (Contact page) */
+
 .contact-form {
   display: flex;
   flex-direction: column;
@@ -174,7 +170,6 @@ main a:hover {
   opacity: 0.9;
 }
 
-/* 8. Футер (Подвал) */
 .footer {
   background-color: var(--main-color);
   color: #94a3b8;
@@ -183,7 +178,6 @@ main a:hover {
   margin-top: auto;
 }
 
-/* 9. Адаптивтік (Media Queries) */
 @media (max-width: 768px) {
   .header {
     flex-direction: column;
