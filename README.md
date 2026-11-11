@@ -56,24 +56,28 @@ All JavaScript code is located in a single file: `script.js`.
 **1. Form Validation (Contact page)**
 - Required field checks for name, email, password, confirmation, and message
 - Email format verification using Regular Expressions (RegEx)
-- Password strength indicator that displays **weak / medium / strong**
+- Password strength indicator that displays **weak / medium / strong**. Passwords
+  must contain at least 8 characters, a letter and a number. Uppercase and
+  lowercase letters together with a symbol give a strong rating.
 - Password confirmation check to ensure both fields match
 - Real-time feedback while the user types (error messages + colors)
 - Form submission is prevented if validation fails
-- Success message shown when the form is valid
+- Success message shown when the form is valid, without reloading the page.
+  This is a client-side practice form: no messages are sent or accounts created.
 
 **2. Dynamic Search & Category Filter (Music page)**
 - Real-time search bar that filters activity items as the user types
 - Category filter buttons: All / Lessons / Performances
 - Search and category filters work together
 - Case-insensitive matching
-- Implemented with jQuery `.on("keyup")` — no page reload required
+- Implemented with jQuery `.on("input")` — works when typing, pasting or clearing text, without reloading
 
 **3. CRUD Table (Sports page)**
 - Full **Create / Read / Update / Delete** functionality for the
   training schedule
 - **Create:** add a new training session using the input row
 - **Read:** all records displayed dynamically in a formatted table
+- The table scrolls inside its container on small screens
 - **Update:** edit an existing record through a Bootstrap modal
 - **Delete:** remove a record with a confirmation prompt
 
@@ -96,7 +100,9 @@ All JavaScript code is located in a single file: `script.js`.
 ## How the Features Work (brief)
 - **Validation:** on `input` and `submit` events, each field is checked and
   an error message is shown if the value is invalid. The submit handler
-  calls `preventDefault()` when any check fails.
+  calls `preventDefault()` to keep both validation errors and the success
+  message on the same page. Password confirmation is checked again whenever
+  either password field changes.
 - **Search & filter:** every activity element has a `data-type`. The filter
   function compares the search text (lowercased) against the element text
   and checks the active category, then shows or hides each item.

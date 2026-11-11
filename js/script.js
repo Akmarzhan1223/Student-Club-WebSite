@@ -2,57 +2,89 @@ $(document).ready(function () {
 
 
     function passLevel(p) {
-        var n = 0;
-        if (p.length >= 8) n++;
-        if (/[A-Z]/.test(p)) n++;
-        if (/[0-9]/.test(p)) n++;
-        if (/[^A-Za-z0-9]/.test(p)) n++;
-        if (n <= 1) return "weak";
-        if (n <= 3) return "medium";
-        return "strong";
+        if (p.length < 8 || !/[A-Za-z]/.test(p) || !/[0-9]/.test(p)) return "weak";
+        if (/[a-z]/.test(p) && /[A-Z]/.test(p) && /[^A-Za-z0-9\s]/.test(p)) return "strong";
+        return "medium";
     }
 
-    $("#userPass").on("keyup", function () {
-        var lvl = passLevel($(this).val());
-        $("#passStrength").text("Strength: " + lvl);
+    function showError(fieldId, errorId, message) {
+        $("#" + errorId).text(message);
+        $("#" + fieldId).toggleClass("is-invalid", message !== "")
+            .toggleClass("is-valid", message === "")
+            .attr("aria-invalid", message !== "" ? "true" : "false");
+        return message === "";
+    }
+
+    function checkName() {
+        var name = $("#userName").val().trim();
+        return showError("userName", "errName", name === "" ? "Name is required" : "");
+    }
+
+    function checkEmail() {
+        var email = $("#userEmail").val().trim();
+        var mailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        var error = email === "" ? "Email is required" : "";
+        if (email !== "" && !mailPattern.test(email)) error = "Enter an email like name@example.com";
+        return showError("userEmail", "errEmail", error);
+    }
+
+    function checkPassword() {
+        var password = $("#userPass").val();
+        var lvl = passLevel(password);
+        $("#passStrength").text(password === "" ? "" : "Strength: " + lvl);
         $("#passStrength").removeClass("text-danger text-warning text-success");
         if (lvl === "weak") $("#passStrength").addClass("text-danger");
         else if (lvl === "medium") $("#passStrength").addClass("text-warning");
         else $("#passStrength").addClass("text-success");
-    });
+        var error = password === "" ? "Password is required" : "";
+        if (password !== "" && lvl === "weak") error = "Use at least 8 characters, including a letter and a number";
+        return showError("userPass", "errPass", error);
+    }
 
-    $("#userPass2").on("keyup", function () {
-        var ok = $(this).val() === $("#userPass").val();
-        $("#passMatch").text(ok ? "Passwords match" : "Passwords do not match");
-        $("#passMatch").removeClass("text-success text-danger");
-        $("#passMatch").addClass(ok ? "text-success" : "text-danger");
+    function checkConfirmation() {
+        var confirmation = $("#userPass2").val();
+        var error = confirmation === "" ? "Please confirm your password" : "";
+        if (confirmation !== "" && confirmation !== $("#userPass").val()) error = "Passwords do not match";
+        $("#passMatch").text(error === "" ? "Passwords match" : "").addClass("text-success");
+        return showError("userPass2", "errPass2", error);
+    }
+
+    function checkMessage() {
+        var message = $("#userMsg").val().trim();
+        return showError("userMsg", "errMsg", message === "" ? "Message is required" : "");
+    }
+
+    $("#userName").on("input", checkName);
+    $("#userEmail").on("input", checkEmail);
+    $("#userMsg").on("input", checkMessage);
+    $("#userPass2").on("input", checkConfirmation);
+    $("#userPass").on("input", function () {
+        checkPassword();
+        if ($("#userPass2").val() !== "" || $("#errPass2").text() !== "") checkConfirmation();
+    });
+    $("#joinForm input, #joinForm textarea, #joinForm select").on("input change", function () {
+        $("#joinStatus").prop("hidden", true);
     });
 
     $("#joinForm").on("submit", function (e) {
-        var good = true;
-        var mailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        var nm = $("#userName").val().trim();
-        var em = $("#userEmail").val().trim();
-        var ps = $("#userPass").val();
-        var ps2 = $("#userPass2").val();
-        var ms = $("#userMsg").val().trim();
-
-        if (nm === "") { $("#errName").text("Name is required"); good = false; } else { $("#errName").text(""); }
-        if (!mailPattern.test(em)) { $("#errEmail").text("Invalid email format"); good = false; } else { $("#errEmail").text(""); }
-        if (passLevel(ps) === "weak") { $("#errPass").text("Password is too weak"); good = false; } else { $("#errPass").text(""); }
-        if (ps !== ps2) { $("#errPass2").text("Passwords must match"); good = false; } else { $("#errPass2").text(""); }
-        if (ms === "") { $("#errMsg").text("Message is required"); good = false; } else { $("#errMsg").text(""); }
-
-        if (!good) {
-            e.preventDefault();
-        } else {
-            alert("Thanks! Your message was sent.");
+        e.preventDefault();
+        $("#joinStatus").prop("hidden", true);
+        var checks = [checkName(), checkEmail(), checkPassword(), checkConfirmation(), checkMessage()];
+        if (checks.indexOf(false) !== -1) {
+            $(this).find(".is-invalid").first().trigger("focus");
+            return;
         }
+
+        this.reset();
+        $(this).find(".is-valid, .is-invalid").removeClass("is-valid is-invalid").removeAttr("aria-invalid");
+        $("#errName, #errEmail, #errPass, #errPass2, #errMsg, #passStrength, #passMatch").text("");
+        $("#joinStatus").text("Thanks! All fields are valid. This practice form does not send messages or create accounts.")
+            .prop("hidden", false).trigger("focus");
     });
 
 
     function doFilter() {
-        var word = $("#findBox").val().toLowerCase();
+        var word = $("#findBox").val().trim().toLowerCase();
         var type = $(".pickBtn.active").data("type");
         $(".activity").each(function () {
             var txt = $(this).text().toLowerCase();
@@ -64,7 +96,7 @@ $(document).ready(function () {
     }
 
     if ($("#findBox").length > 0) {
-        $("#findBox").on("keyup", doFilter);
+        $("#findBox").on("input", doFilter);
         $(".pickBtn").on("click", function () {
             $(".pickBtn").removeClass("active btn-primary").addClass("btn-outline-primary");
             $(this).addClass("active btn-primary").removeClass("btn-outline-primary");

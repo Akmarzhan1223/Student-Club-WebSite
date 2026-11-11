@@ -21,19 +21,21 @@
 
     <main class="container my-4">
         <h1>Contact Us</h1>
-        <p>Want to join a club? Send us a message!</p>
+        <p>Want to join a club? Try our registration form below.</p>
 
         <form class="contact-form" id="joinForm" novalidate>
+            <p class="small">All fields except club selection are required. This practice form checks your details without sending them.</p>
+            <div id="joinStatus" class="alert alert-success" role="status" tabindex="-1" hidden></div>
             <div class="mb-3">
                 <label for="userName">Your Name</label>
-                <input type="text" id="userName" class="form-control" placeholder="Enter your name">
-                <div class="text-danger small" id="errName"></div>
+                <input type="text" id="userName" class="form-control" placeholder="Enter your name" autocomplete="name" aria-describedby="errName" required>
+                <div class="text-danger small" id="errName" aria-live="polite"></div>
             </div>
 
             <div class="mb-3">
                 <label for="userEmail">Email</label>
-                <input type="email" id="userEmail" class="form-control" placeholder="Enter your email">
-                <div class="text-danger small" id="errEmail"></div>
+                <input type="email" id="userEmail" class="form-control" placeholder="Enter your email" autocomplete="email" aria-describedby="errEmail" required>
+                <div class="text-danger small" id="errEmail" aria-live="polite"></div>
             </div>
 
             <div class="mb-3">
@@ -47,22 +49,23 @@
 
             <div class="mb-3">
                 <label for="userPass">Password</label>
-                <input type="password" id="userPass" class="form-control" placeholder="Create a password">
-                <div id="passStrength" class="small fw-bold mt-1"></div>
-                <div class="text-danger small" id="errPass"></div>
+                <input type="password" id="userPass" class="form-control" placeholder="Create a password" autocomplete="new-password" minlength="8" aria-describedby="passHelp passStrength errPass" required>
+                <div id="passHelp" class="small mt-1">At least 8 characters, including a letter and a number.</div>
+                <div id="passStrength" class="small fw-bold mt-1" aria-live="polite"></div>
+                <div class="text-danger small" id="errPass" aria-live="polite"></div>
             </div>
 
             <div class="mb-3">
                 <label for="userPass2">Confirm Password</label>
-                <input type="password" id="userPass2" class="form-control" placeholder="Confirm password">
-                <div id="passMatch" class="small mt-1"></div>
-                <div class="text-danger small" id="errPass2"></div>
+                <input type="password" id="userPass2" class="form-control" placeholder="Confirm password" autocomplete="new-password" aria-describedby="passMatch errPass2" required>
+                <div id="passMatch" class="small mt-1" aria-live="polite"></div>
+                <div class="text-danger small" id="errPass2" aria-live="polite"></div>
             </div>
 
             <div class="mb-3">
                 <label for="userMsg">Message</label>
-                <textarea id="userMsg" class="form-control" rows="4" placeholder="Write your message..."></textarea>
-                <div class="text-danger small" id="errMsg"></div>
+                <textarea id="userMsg" class="form-control" rows="4" placeholder="Write your message..." aria-describedby="errMsg" required></textarea>
+                <div class="text-danger small" id="errMsg" aria-live="polite"></div>
             </div>
 
             <button type="submit" class="btn btn-primary">Send</button>
@@ -81,6 +84,6 @@
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
