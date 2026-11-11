@@ -6,6 +6,7 @@
 - Nurtas Akmarzhan
 
 **GitHub Repository:** https://github.com/Akmarzhan1223/Student-Club-WebSite
+
 **Live Website:** https://akmarzhan1223.github.io/Student-Club-WebSite/
 
 ---
@@ -50,7 +51,7 @@ navigation bar that is visible on every page:
 - Working images, links, and visual elements on all pages
 
 ### JavaScript & jQuery (endterm enhancements)
-All JavaScript code is located in a single file: `js/script.js`.
+All JavaScript code is located in a single file: `script.js`.
 
 **1. Form Validation (Contact page)**
 - Required field checks for name, email, password, confirmation, and message
@@ -119,7 +120,7 @@ All JavaScript code is located in a single file: `js/script.js`.
 - Debate and Music page content, layout, and styling
 - Consistency of navigation and design across pages
 
-### Assilkhan Tolganay
+### Asylkhan Tolganay
 - Sports page: full CRUD training schedule (add, edit via modal, delete
   with confirmation)
 - Home page: lightbox gallery with arrows and fade transitions
