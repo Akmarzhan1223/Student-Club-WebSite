@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+
     function passLevel(p) {
         var n = 0;
         if (p.length >= 8) n++;
@@ -42,9 +43,13 @@ $(document).ready(function () {
         if (ps !== ps2) { $("#errPass2").text("Passwords must match"); good = false; } else { $("#errPass2").text(""); }
         if (ms === "") { $("#errMsg").text("Message is required"); good = false; } else { $("#errMsg").text(""); }
 
-        if (!good) e.preventDefault();
-        else alert("Thanks! Your message was sent.");
+        if (!good) {
+            e.preventDefault();
+        } else {
+            alert("Thanks! Your message was sent.");
+        }
     });
+
 
     function doFilter() {
         var word = $("#findBox").val().toLowerCase();
@@ -98,7 +103,10 @@ $(document).ready(function () {
             var t = $("#timeInput").val().trim();
             var a = $("#activityInput").val().trim();
             var p = $("#placeInput").val().trim();
-            if (d === "" || t === "" || a === "" || p === "") { alert("Please fill all fields"); return; }
+            if (d === "" || t === "" || a === "" || p === "") {
+                alert("Please fill all fields");
+                return;
+            }
             schedule.push({ day: d, time: t, activity: a, place: p });
             drawTable();
             $("#dayInput, #timeInput, #activityInput, #placeInput").val("");
