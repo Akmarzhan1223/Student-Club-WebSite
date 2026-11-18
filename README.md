@@ -1,134 +1,41 @@
 # Student Clubs Website
 
-**Group Members:**
-- Saken Zhadiger
-- Assilkhan Tolganay
-- Nurtas Akmarzhan
+**Project Topic:** Student Clubs (Sports, Debate, Music)
+**Group:** SE-2538
 
 **GitHub Repository:** https://github.com/Akmarzhan1223/Student-Club-WebSite
 
-**Live Website:** https://akmarzhan1223.github.io/Student-Club-WebSite/
-
----
-
-## Project Topic
-Student Clubs — an informational multi-page website about student clubs
-at the university, covering Sports, Debate, and Music clubs.
-
 ## Project Description
-Student Clubs is a responsive multi-page website created for students who
-want to learn about and join university clubs. The site presents each club
-(Sports, Debate, Music), allows visitors to register through a validated
-contact form, lets administrators manage the Sports training schedule,
-enables visitors to search and filter club activities in real time, and
-provides an interactive photo gallery with a lightbox.
+This project is a responsive, multi-page website designed for university student clubs. The purpose of the website is to provide students with a central hub where they can learn about different clubs (Sports, Debate, Music), read frequently asked questions, search for recommended books, and register to join via a sign-in system.
 
-The project started as a static HTML/CSS midterm website and was extended
-for the endterm with dynamic behavior using JavaScript and jQuery, without
-changing the original topic or structure, as required by the assignment.
+## Group Members & Responsibilities
+We divided the work equally to ensure all requirements were met:
 
-## Website Structure
-The website contains **5 pages**, all connected through a shared
-navigation bar that is visible on every page:
+- **Zhadiger Saken** 
+  - Developed the Home page structure and layout.
+  - Designed the overall CSS theme (colors, typography, and Flexbox responsive layout for mobile/tablet).
+  - Implemented the Light/Dark Theme Toggle using JavaScript and `localStorage`.
+  
+- **Tolganay Assilkhan** 
+  - Developed the Contact page and the Sign-In form.
+  - Implemented the Sign-In / Sign-Out logic, saving user data in `localStorage`.
+  - Integrated the Open Library API using `fetch()` on the Books page, including dynamic data rendering and error handling.
 
-| Page | Purpose |
-|---|---|
-| Home | About the club, mission, club overview cards, photo gallery |
-| Sports | Sports club activities and editable training schedule |
-| Debate | Debate club information and activities |
-| Music | Music club activities with search and category filter |
-| Contact | Registration / contact form with validation, contact details |
+- **Akmarzhan Nurtas** 
+  - Developed the Sports, Debate, and Music pages.
+  - Built the FAQ page using jQuery, implementing the smooth `.slideToggle()` animation and the `+/-` visual indicators.
+  - Sourced and integrated the image galleries for all club pages.
 
-## Features Implemented
+## Implemented Features
+1. **Multi-page Navigation:** 7 pages connected by a sticky, responsive navigation bar.
+2. **Light/Dark Theme:** A fully functional theme toggle. The selected theme is saved in `localStorage` and remains active after refreshing the page.
+3. **User Authentication:** A sign-in form with basic validation. The username is saved in `localStorage`, displaying a personalized welcome message in the header. A sign-out button clears the saved state.
+4. **jQuery FAQ Accordion:** An interactive FAQ section with 5 questions. Answers expand and collapse smoothly using jQuery `.slideToggle()`, with a `+` and `-` icon to indicate the state.
+5. **API Integration:** A book search feature on the Books page. It uses the `fetch()` method to retrieve JSON data from the Open Library API, processes the data, and displays book titles and authors dynamically. It also includes `catch()` error handling for network issues.
+6. **Responsive Design:** The website uses CSS Flexbox and Media Queries to ensure the layout adapts perfectly to desktop, tablet, and mobile screens.
 
-### HTML & CSS
-- 5 separate HTML5 pages with semantic structure
-- Shared navigation bar on every page
-- External `style.css` file used across the whole website
-- Consistent design: colors, fonts, spacing, and typography
-- Responsive layout using **Bootstrap 5 grid** and **CSS Flexbox**
-- Media queries for tablet and mobile devices
-- Working images, links, and visual elements on all pages
 
-### JavaScript & jQuery (endterm enhancements)
-All JavaScript code is located in a single file: `script.js`.
+## AI Usage Policy
+AI tools (ChatGPT) were used as a supporting tool during the development of this project. Specifically, AI was used to help generate the visual style and CSS design, as well as to assist with debugging JavaScript code and structuring the HTML. 
 
-**1. Form Validation (Contact page)**
-- Required field checks for name, email, password, confirmation, and message
-- Email format verification using Regular Expressions (RegEx)
-- Password strength indicator that displays **weak / medium / strong**. Passwords
-  must contain at least 8 characters, a letter and a number. Uppercase and
-  lowercase letters together with a symbol give a strong rating.
-- Password confirmation check to ensure both fields match
-- Real-time feedback while the user types (error messages + colors)
-- Form submission is prevented if validation fails
-- Success message shown when the form is valid, without reloading the page.
-  This is a client-side practice form: no messages are sent or accounts created.
-
-**2. Dynamic Search & Category Filter (Music page)**
-- Real-time search bar that filters activity items as the user types
-- Category filter buttons: All / Lessons / Performances
-- Search and category filters work together
-- Case-insensitive matching
-- Implemented with jQuery `.on("input")` — works when typing, pasting or clearing text, without reloading
-
-**3. CRUD Table (Sports page)**
-- Full **Create / Read / Update / Delete** functionality for the
-  training schedule
-- **Create:** add a new training session using the input row
-- **Read:** all records displayed dynamically in a formatted table
-- The table scrolls inside its container on small screens
-- **Update:** edit an existing record through a Bootstrap modal
-- **Delete:** remove a record with a confirmation prompt
-
-**4. Image Gallery with Lightbox (Home page)**
-- Image gallery grid built with Bootstrap columns
-- Lightbox effect: clicking an image opens it enlarged
-- Navigation arrows to move between images
-- Smooth transitions using jQuery `.fadeIn()` and `.fadeOut()`
-- Close button to exit the lightbox
-
-## Technologies Used
-| Technology | Purpose |
-|---|---|
-| HTML5 | Page structure and semantic markup |
-| CSS3 | Styling, layout, and responsive media queries |
-| Bootstrap 5 | Responsive grid, components (modal, buttons) |
-| JavaScript | DOM logic and application behavior |
-| jQuery 3.7 | Form events, filters, animations, DOM manipulation |
-
-## How the Features Work (brief)
-- **Validation:** on `input` and `submit` events, each field is checked and
-  an error message is shown if the value is invalid. The submit handler
-  calls `preventDefault()` to keep both validation errors and the success
-  message on the same page. Password confirmation is checked again whenever
-  either password field changes.
-- **Search & filter:** every activity element has a `data-type`. The filter
-  function compares the search text (lowercased) against the element text
-  and checks the active category, then shows or hides each item.
-- **CRUD:** records are stored in a JavaScript array. Rendering rebuilds
-  the table from the array; add/edit/delete modify the array and re-render.
-- **Gallery:** image sources are collected into an array. Clicking an image
-  opens the lightbox; arrow buttons cycle through the array with fade
-  transitions between images.
-
-## Individual Contribution
-
-### Akmarzhan Nurtas
-- Contact page: HTML form structure and full client-side validation
-  (required fields, RegEx email, password strength, password confirmation,
-  real-time feedback, submit prevention)
-- Home page layout and gallery markup
-- Wrote the project README
-
-### Saken Zhadiger
-- Music page: real-time search bar and category filter (jQuery events)
-- Debate and Music page content, layout, and styling
-- Consistency of navigation and design across pages
-
-### Asylkhan Tolganay
-- Sports page: full CRUD training schedule (add, edit via modal, delete
-  with confirmation)
-- Home page: lightbox gallery with arrows and fade transitions
-- Final integration, testing, and GitHub Pages deployment
-
+All AI-generated code and designs were carefully reviewed, modified, and tested by the group members to ensure full understanding and functionality. We acknowledge this usage in accordance with the course rules.
