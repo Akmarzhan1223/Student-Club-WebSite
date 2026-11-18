@@ -36,6 +36,6 @@ We divided the work equally to ensure all requirements were met:
 
 
 ## AI Usage Policy
-AI tools (ChatGPT) were used as a supporting tool during the development of this project. Specifically, AI was used to help generate the visual style and CSS design, as well as to assist with debugging JavaScript code and structuring the HTML. 
+AI tools (ChatGPT) were used as a supporting tool during the development of this project. Specifically, AI was used to help generate the visual style and CSS design, as well as to assist with debugging JavaScript code. 
 
 All AI-generated code and designs were carefully reviewed, modified, and tested by the group members to ensure full understanding and functionality. We acknowledge this usage in accordance with the course rules.
